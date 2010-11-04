@@ -6,12 +6,12 @@ Description
 
 Facebook Status Archive is a tool that lets users archive old Facebook statuses, and either view them online or download them in Rich Text.  The app remembers when each user last requested data, allowing returning users to pick up right where they left off.
 
-I used Facebooker2 and Formtastic in building this app.
+I used [Facebooker2](https://github.com/mmangino/facebooker2/) and [Formtastic](https://github.com/justinfrench/formtastic/) in building this app.
 
 How it is used
 --------------
 
-When a user first navigates to http://archive-fb.com, they see a brief description of the app, an invitation to log in with Facebook Connect, and a Like box from Facebook (which is shown at the bottom of every page).  After they are logged in, the login button is replaced by a logout link, and a simple form is displayed, prompting users to select an output format and click "Get my statuses!"  There is also an unobtrusive Ajax link to "choose dates +".  Upon clicking this link, the form expands to display drop-down menus for the beginning and end dates of the period they'd like to archive.
+When a user first navigates to [archive-fb.com](http://archive-fb.com/), they see a brief description of the app, an invitation to log in with Facebook Connect, and a Like box from Facebook (which is shown at the bottom of every page).  After they are logged in, the login button is replaced by a logout link, and a simple form is displayed, prompting users to select an output format and click "Get my statuses!"  There is also an unobtrusive Ajax link to "choose dates +".  Upon clicking this link, the form expands to display drop-down menus for the beginning and end dates of the period they'd like to archive.
 
 If the user requests their statuses in HTML, the app redirects to the Show page, which displays all of their statuses, kind of like a diary.  If they choose RTF, the app initiates a download of the statuses in RTF.
 
@@ -23,35 +23,35 @@ Models
 ### User
 The User model stores information about individual Facebook users.  The app remembers users so that it can continue to provide access to data that was already requested, and so that it can provide returning users the option to seamlessly pick up where they left off.  The User model has_many Apicalls and has_many Statuses.
 	
-> ++++++++++++++++ SCHEMA +++++++++++++++++++++++++++++++<br />
-> create_table "users", :force => true do |t|<br />
->    t.integer "fb_id",      :null => false<br />
->    t.string  "name",       :null => false<br />
->    t.string  "first_name"<br />
->    t.string  "last_name"<br />
-> end
+ Schema:
+    create_table "users", :force => true do |t|
+      t.integer "fb_id",      :null => false
+      t.string  "name",       :null => false
+      t.string  "first_name"
+      t.string  "last_name"
+    end
 
 ### Apicall
 The Apicall model class is basically a wrapper for the parameters a user specifies before requesting status data.  This information is used to call the Facebook Graph API, and also to instruct the app on what to do next once the data is received. The model also stores info about WHEN the user made a data request.  This enables the app to later determine where the user "left off" in recording their statuses.  **Apicall = data request.**  That the Apicall "has many" Statuses means that this model also _groups_ the Statuses, by the occasion on which they were requested.  Apicall also belongs_to User.  
 
-> ++++++++++++++++ SCHEMA ++++++++++++++++++++++++++++++++<br />
->  create_table "apicalls", :force => true do |t|<br />
->    t.integer  "user_id",       :null => false<br />
->    t.datetime "created_at"<br />
->    t.datetime "updated_at"<br />
->    t.string   "access_token"<br />
->    t.string   "since"<br />
->    t.string   "until"<br />
->    t.boolean  "left_off"<br />
->    t.string   "output_format"<br />
->  end
+ Schema:
+    create_table "apicalls", :force => true do |t|
+      t.integer  "user_id",       :null => false
+      t.datetime "created_at"
+      t.datetime "updated_at"
+      t.string   "access_token"
+      t.string   "since"
+      t.string   "until"
+      t.boolean  "left_off"
+      t.string   "output_format"
+    end
 
 The model validates the presence and format of :output_format.  It must be either "HTML" or "Rich Text".
 
 ### Status
 The Status model stores information about an individual Facebook status.  Each Status belongs_to a User.  Users request statuses in units called Apicalls, so Statuses also belong_to Apicalls.
 
- Schema
+ Schema:
     create_table "statuses", :force => true do |t|
       t.integer  "user_id",         :null => false
       t.integer  "apicall_id",      :null => false
@@ -87,4 +87,4 @@ This module deals with acquiring status data from the Facebook Graph API.  The U
 ### DateFormatter
 Performs various functions related to changing the format of dates: creates a "diary"-like string out of a status' datetime; determines the date to use when a user wants to "pick up where I left off"; finds month names based on numbers; handles regexes; etc.
 ### FormatRtf
-This module takes a set of statuses and uses the ruby-rtf plugin to create an RTF document which displays them.  The resulting document has a header, a separate "paragraph" for each status (which displays the date, time, and status message), and a link to archive-fb.com at the end.  The finished document is returned to the controller.
+This module takes a set of statuses and uses the [ruby-rtf](ruby-rtf.rubyforge.org/) plugin to create an RTF document which displays them.  The resulting document has a header, a separate "paragraph" for each status (which displays the date, time, and status message), and a link to [archive-fb.com](http://archive-fb.com/) at the end.  The finished document is returned to the controller.
