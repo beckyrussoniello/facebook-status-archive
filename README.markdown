@@ -21,7 +21,7 @@ Models
 -------------
 
 ### User
-The User model stores information about individual Facebook users.  The app remembers users so that it can continue to provide access to data that was already requested, and so that it can provide returning users the option to seamlessly pick up where they left off.  The User model has_many Apicalls and has_many Statuses.
+The User model stores information about individual Facebook users.  The app remembers users so that it can continue to provide access to data that was already requested, and so that it can provide returning users the option to seamlessly pick up where they left off.  The User model `has_many` Apicalls and `has_many` Statuses.
 	
  Schema:
     create_table "users", :force => true do |t|
@@ -32,7 +32,7 @@ The User model stores information about individual Facebook users.  The app reme
     end
 
 ### Apicall
-The Apicall model class is basically a wrapper for the parameters a user specifies before requesting status data.  This information is used to call the Facebook Graph API, and also to instruct the app on what to do next once the data is received. The model also stores info about WHEN the user made a data request.  This enables the app to later determine where the user "left off" in recording their statuses.  **Apicall = data request.**  That the Apicall "has many" Statuses means that this model also _groups_ the Statuses, by the occasion on which they were requested.  Apicall also belongs_to User.  
+The Apicall model class is basically a wrapper for the parameters a user specifies before requesting status data.  This information is used to call the Facebook Graph API, and also to instruct the app on what to do next once the data is received. The model also stores info about WHEN the user made a data request.  This enables the app to later determine where the user "left off" in recording their statuses.  **Apicall = data request.**  That the Apicall `has_many` Statuses means that this model also _groups_ the Statuses, by the occasion on which they were requested.  Apicall also `belongs_to` User.  
 
  Schema:
     create_table "apicalls", :force => true do |t|
@@ -46,10 +46,10 @@ The Apicall model class is basically a wrapper for the parameters a user specifi
       t.string   "output_format"
     end
 
-The model validates the presence and format of :output_format.  It must be either "HTML" or "Rich Text".
+The model validates the presence and format of :output_format.  It must be either `"HTML"` or `"Rich Text"`.
 
 ### Status
-The Status model stores information about an individual Facebook status.  Each Status belongs_to a User.  Users request statuses in units called Apicalls, so Statuses also belong_to Apicalls.
+The Status model stores information about an individual Facebook status.  Each Status `belongs_to` a User.  Users request statuses in units called Apicalls, so Statuses also `belong_to` Apicalls.
 
  Schema:
     create_table "statuses", :force => true do |t|
@@ -66,14 +66,14 @@ Controllers
 ### Users Controller
 * `post_callback` - parses the cookie from Facebook after the user logs in with Facebook Connect.  For first-time users, it creates a new model instance with their Facebook info.  Then, it sets the user's session information.
 * `past_activity` - allows a logged-in user to view their own past activity.
-* `logout` - clears session data and redirects to the logged-out version of the main page.
+* `logout` - clears session data and redirects to the logged-out version of the main page.</ul>
 ### Welcome Controller
-* `index` - sets instance variables for the main page.
+* `index` - sets instance variables for the main page.</ul>
 ### Apicalls Controller
 * `create` - uses form data to populate an Apicall instance.
 * `rtf` - generates an RTF document with the user's statuses and sends it to the user.
 * `show` - shows all the statuses in an Apicall.
-* `match_user` - before filter; ensures that a user deals only with their own Apicalls.
+* `match_user` - before filter; ensures that a user deals only with their own Apicalls.</ul>
 ### Status Controller
 * `create_statuses` - gets status data from Facebook in the form of JSON.  Parses this data, and uses it to populate a Status instance for each status in the JSON response.
 
@@ -83,8 +83,8 @@ Modules
 
 Three lib modules help Status Archive work:
 ### JsonParser
-This module deals with acquiring status data from the Facebook Graph API.  The URL for an API call always begins with https://graph.facebook.com/me/statuses -- we will call this the BASE_URL.  An access token (unique for every session) must be appended. Additional parameters (such as "since" and "until") are optional.  Once the URL is constructed, we curl that page.  The data is received as JSON, which is then parsed and returned to the controller.  The method 'JsonParser.get_status_attributes' performs more specialized parsing on each individual status -- ultimately returning a hash which is used to initialize a Status object.
+This module deals with acquiring status data from the Facebook Graph API.  The URL for an API call always begins with https://graph.facebook.com/me/statuses -- we will call this the BASE_URL.  An access token (unique for every session) must be appended. Additional parameters (such as "since" and "until") are optional.  Once the URL is constructed, we curl that page.  The data is received as JSON, which is then parsed and returned to the controller.  The method `JsonParser.get_status_attributes` performs more specialized parsing on each individual status -- ultimately returning a hash which is used to initialize a Status object.
 ### DateFormatter
-Performs various functions related to changing the format of dates: creates a "diary"-like string out of a status' datetime; determines the date to use when a user wants to "pick up where I left off"; finds month names based on numbers; handles regexes; etc.
+Performs various functions related to changing the format of dates: creates a diary-style string out of a status' datetime; determines the date to use when a user wants to "pick up where I left off"; finds month names based on numbers; handles regexes; etc.
 ### FormatRtf
-This module takes a set of statuses and uses the [ruby-rtf](http://ruby-rtf.rubyforge.org/) plugin to create an RTF document which displays them.  The resulting document has a header, a separate "paragraph" for each status (which displays the date, time, and status message), and a link to [archive-fb.com](http://archive-fb.com/) at the end.  The finished document is returned to the controller.
+This module takes a set of statuses and uses the [ruby-rtf](http://ruby-rtf.rubyforge.org/) plugin to create an RTF document which displays them.  The resulting document has a header, a separate paragraph for each status (which displays the date, time, and status message), and a link to [archive-fb.com](http://archive-fb.com/) at the end.  The finished document is returned to the controller.
