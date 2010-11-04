@@ -71,7 +71,7 @@ Controllers
 * `index` - sets instance variables for the main page.</ul>
 ### Apicalls Controller
 * `create` - uses form data to populate an Apicall instance.
-* `rtf` - generates an RTF document with the user's statuses and sends it to the user.
+* `rtf` - generates an RTF document with the statuses in an Apicall and sends it to the user.
 * `show` - shows all the statuses in an Apicall.
 * `match_user` - before filter; ensures that a user deals only with their own Apicalls.</ul>
 ### Status Controller
