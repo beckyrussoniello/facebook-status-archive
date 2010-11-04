@@ -1,14 +1,14 @@
-FACEBOOK STATUS ARCHIVE
+Facebook Status Archive
 =======================
 
-DESCRIPTION
+Description
 -----------
 
 Facebook Status Archive is a tool that lets users archive old Facebook statuses, and either view them online or download them in Rich Text.  The app remembers when each user last requested data, allowing returning users to pick up right where they left off.
 
 I used Facebooker2 and Formtastic in building this app.
 
-HOW TO USE
+How it is used
 ----------
 
 When a user first navigates to http://archive-fb.com, they see a brief description of the app, an invitation to log in with Facebook Connect, and a Like box from Facebook (which is shown at the bottom of every page).  After they are logged in, the login button is replaced by a logout link, and a simple form is displayed, prompting users to select an output format and click "Get my statuses!"  There is also an unobtrusive Ajax link to "choose dates +".  Upon clicking this link, the form expands to display drop-down menus for the beginning and end dates of the period they'd like to archive.
@@ -17,10 +17,10 @@ If the user requests their statuses in HTML, the app redirects to the Show page,
 
 On subsequent visits to the site, the logged-in version of the main page will be different.  Instead of the app description, it will display a Past Activity section listing up to three of the user's past data requests.  The user can view already-archived statuses by clicking a link on each of these listings.  There is also a link to the Past Activity page, which displays all of a user's past activity. 
 
-MODELS/SCHEMA
+Models
 -------------
 
-### USER
+### User
 The User model stores information about individual Facebook users.  The app remembers users so that it can continue to provide access to data that was already requested, and so that it can provide returning users the option to seamlessly pick up where they left off.  The User model has_many Apicalls and has_many Statuses.
 	
 > ++++++++++++++++ SCHEMA +++++++++++++++++++++++++++++++
@@ -31,7 +31,7 @@ The User model stores information about individual Facebook users.  The app reme
 >    t.string  "last_name"
 > end
 
-### APICALL
+### Apicall
 The Apicall model class is basically a wrapper for the parameters a user specifies before requesting status data.  This information is used to call the Facebook Graph API, and also to instruct the app on what to do next once the data is received. The model also stores info about WHEN the user made a data request.  This enables the app to later determine where the user "left off" in recording their statuses.  **Apicall = data request.**  That the Apicall "has many" Statuses means that this model also _groups_ the Statuses, by the occasion on which they were requested.  Apicall also belongs_to User.  
 
 > ++++++++++++++++ SCHEMA ++++++++++++++++++++++++++++++++
@@ -48,7 +48,7 @@ The Apicall model class is basically a wrapper for the parameters a user specifi
 
 The model validates the presence and format of :output_format.  It must be either "HTML" or "Rich Text".
 
-### STATUS
+### Status
 The Status model stores information about an individual Facebook status.  Each Status belongs_to a User.  Users request statuses in units called Apicalls, so Statuses also belong_to Apicalls.
 
 > ++++++++++++++++ SCHEMA ++++++++++++++++++++++++++++++++
@@ -60,22 +60,22 @@ The Status model stores information about an individual Facebook status.  Each S
 >    t.string   "datetime_string"
 >  end
 
-CONTROLLERS
+Controllers
 ------------
 
-### USERS CONTROLLER
-	`post_callback` - parses the cookie from Facebook after the user logs in with Facebook Connect.  For first-time users, it creates a new model instance with their Facebook info.  Then, it sets the user's session information.
-	`past_activity` - allows a logged-in user to view their own past activity.
-	`logout` - clears session data and redirects to the logged-out version of the main page.
-### WELCOME CONTROLLER
-	`index` - sets instance variables for the main page.
-### APICALLS CONTROLLER
-	`create` - uses form data to populate an Apicall instance.
-	`rtf` - generates an RTF document with the user's statuses and sends it to the user.
-	`show` - shows all the statuses in an Apicall.
-	`match_user` - before filter; ensures that a user deals only with their own Apicalls.
-### STATUS CONTROLLER
-	`create_statuses` - gets status data from Facebook in the form of JSON.  Parses this data, and uses it to populate a Status instance for each status in the JSON response.
+### Users Controller
+	* `post_callback` - parses the cookie from Facebook after the user logs in with Facebook Connect.  For first-time users, it creates a new model instance with their Facebook info.  Then, it sets the user's session information.
+	* `past_activity` - allows a logged-in user to view their own past activity.
+	* `logout` - clears session data and redirects to the logged-out version of the main page.
+### Welcome Controller
+	* `index` - sets instance variables for the main page.
+### Apicalls Controller
+	* `create` - uses form data to populate an Apicall instance.
+	* `rtf` - generates an RTF document with the user's statuses and sends it to the user.
+	* `show` - shows all the statuses in an Apicall.
+	* `match_user` - before filter; ensures that a user deals only with their own Apicalls.
+### Status Controller
+	* `create_statuses` - gets status data from Facebook in the form of JSON.  Parses this data, and uses it to populate a Status instance for each status in the JSON response.
 
 
 MODULES
