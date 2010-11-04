@@ -46,7 +46,7 @@ The Apicall model class is basically a wrapper for the parameters a user specifi
       t.string   "output_format"
     end
 
-The model validates the presence and format of :output_format.  It must be either `"HTML"` or `"Rich Text"`.
+The model validates the presence and format of `:output_format`.  It must be either `"HTML"` or `"Rich Text"`.
 
 ### Status
 The Status model stores information about an individual Facebook status.  Each Status `belongs_to` a User.  Users request statuses in units called Apicalls, so Statuses also `belong_to` Apicalls.
