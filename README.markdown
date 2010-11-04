@@ -87,4 +87,4 @@ This module deals with acquiring status data from the Facebook Graph API.  The U
 ### DateFormatter
 Performs various functions related to changing the format of dates: creates a "diary"-like string out of a status' datetime; determines the date to use when a user wants to "pick up where I left off"; finds month names based on numbers; handles regexes; etc.
 ### FormatRtf
-This module takes a set of statuses and uses the [ruby-rtf](ruby-rtf.rubyforge.org/) plugin to create an RTF document which displays them.  The resulting document has a header, a separate "paragraph" for each status (which displays the date, time, and status message), and a link to [archive-fb.com](http://archive-fb.com/) at the end.  The finished document is returned to the controller.
+This module takes a set of statuses and uses the [ruby-rtf](http://ruby-rtf.rubyforge.org/) plugin to create an RTF document which displays them.  The resulting document has a header, a separate "paragraph" for each status (which displays the date, time, and status message), and a link to [archive-fb.com](http://archive-fb.com/) at the end.  The finished document is returned to the controller.
