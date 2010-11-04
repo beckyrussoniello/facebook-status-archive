@@ -51,14 +51,14 @@ The model validates the presence and format of :output_format.  It must be eithe
 ### Status
 The Status model stores information about an individual Facebook status.  Each Status belongs_to a User.  Users request statuses in units called Apicalls, so Statuses also belong_to Apicalls.
 
-> Schema <br />
->\t  create_table "statuses", :force => true do |t|<br />
->\t\t    t.integer  "user_id",         :null => false<br />
-> \t\t   t.integer  "apicall_id",      :null => false<br />
-> \t\t   t.string   "message",         :null => false<br />
-> \t\t   t.datetime "datetime",        :null => false<br />
-> \t\t   t.string   "datetime_string"<br />
-> \t end
+ Schema <br />
+  `create_table "statuses", :force => true do |t|<br />
+    t.integer  "user_id",         :null => false<br />
+    t.integer  "apicall_id",      :null => false<br />
+    t.string   "message",         :null => false<br />
+    t.datetime "datetime",        :null => false<br />
+    t.string   "datetime_string"<br />
+  end`
 
 Controllers
 ------------
