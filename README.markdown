@@ -78,7 +78,7 @@ Controllers
 	* `create_statuses` - gets status data from Facebook in the form of JSON.  Parses this data, and uses it to populate a Status instance for each status in the JSON response.
 
 
-MODULES
+Modules
 --------
 
 Three lib modules help Status Archive work:
