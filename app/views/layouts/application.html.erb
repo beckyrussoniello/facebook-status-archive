@@ -1,0 +1,43 @@
+<! DOCTYPE  html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>Status Archive</title>
+<!-- LOCAL VERSION ONLY: HREF HAS BEEN REMOVED FROM STYLESHEET LINK TAGS! -->
+<%= stylesheet_link_tag 'status-archive' %>
+<%= stylesheet_link_tag 'formtastic' %>
+
+
+</head>
+
+<body>
+<header>
+<h1>Facebook Status Archive</h1>
+<div id="front_page_login_button">
+<%= fb_connect_async_js %>
+<!-- LOCAL VERSION ONLY: SRC HAS BEEN REMOVED FROM JS INCLUDE TAGS! -->
+<%= javascript_include_tag 'prototype', :type => nil %>
+<%= javascript_include_tag 'application', :type => nil %>
+
+  <% unless current_facebook_user %>
+      <%= fb_login_and_redirect('/users/post_callback', :v => '2', :perms => 'read_stream', :text => 'Login') %>
+   <% end %>
+</div>
+
+<h2>Archive your old Facebook statuses</h2>
+</header>
+
+
+<% if flash[:notice] %>
+ <p style="color: purple"><%= flash[:notice] %></p> 
+<% end %>
+
+<%= yield %>
+
+<iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fapps%2Fapplication.php%3Fid%3D149594405078604&amp;width=370&amp;connections=3&amp;stream=false&amp;header=false&amp;height=180" scrolling="no" frameborder="1" style="border:solid; border-width: 140px; border-top: 0; border-bottom: 0; border-color: #157; overflow:hidden; width:370px; height:180px;" allowTransparency="true"></iframe>
+
+
+
+</body>
+</html>
