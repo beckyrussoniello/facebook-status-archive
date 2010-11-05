@@ -1,0 +1,79 @@
+one:
+  id: 1
+  user_id: 1
+  apicall_id: 1
+  message: "Chris' farts smell bad."
+  datetime: <%= Time.now - 10.days %>
+  datetime_string:
+
+two:
+  id: 2
+  user_id: 1
+  apicall_id: 1
+  message: "Yuck, Chris is farting again."
+  datetime: <%= Time.now - 10.days %>
+  datetime_string:
+
+three:
+  id: 3
+  user_id: 1
+  apicall_id: 2
+  message: "My bed is pretty comfy."
+  datetime: <%= Time.now - 10.days %>
+  datetime_string:
+
+four:
+  id: 4
+  user_id: 1
+  apicall_id: 2
+  message: "!!!!!!!!!!!!"
+  datetime: <%= Time.now - 10.days %>
+  datetime_string:
+
+five:
+  id: 5
+  user_id: 2
+  apicall_id: 3
+  message: "Oh no!  My buttcrack is showing!"
+  datetime: 2010-10-10 23:23:23 +0000
+  datetime_string:
+
+six:
+  id: 6
+  user_id: 2
+  apicall_id: 3
+  message: "Farting gives me such a rush :)"
+  datetime: 2010-10-20 20:23:23 +0000
+  datetime_string:
+
+seven:
+  id: 7
+  user_id: 2
+  apicall_id: 4
+  message: "My middle name is Stinky."
+  datetime: <%= Time.now - 10.days %>
+  datetime_string:
+
+eight:
+  id: 8
+  user_id: 2
+  apicall_id: 4
+  message: "PBBBBT!!!"
+  datetime: <%= Time.now - 10.days %>
+  datetime_string:
+
+nine:
+  id: 9
+  user_id: 2
+  apicall_id: 5
+  message: "i <3 fArTiNg!!!11!"
+  datetime: <%= Time.now - 10.days %>
+  datetime_string:
+
+ten:
+  id: 10
+  user_id: 2
+  apicall_id: 5
+  message: "I LIKE TO POOP REALLY LOUDLY"
+  datetime: <%= Time.now - 10.days %>
+  datetime_string:

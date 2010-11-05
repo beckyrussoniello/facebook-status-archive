@@ -1,0 +1,27 @@
+becky:
+  id: 1
+  name: "Becky Russoniello"
+  fb_id: 683111
+  first_name: "Becky"
+  last_name: "Russoniello"
+
+chris:
+  id: 2
+  name: "Chris Waggoner"
+  fb_id: 777777
+  first_name: "Chris"
+  last_name: "Waggoner"
+
+new_person:
+  id: 3
+  name: "New Person"
+  fb_id: 2222
+  first_name: "New"
+  last_name: "Person"
+
+bob:
+  id: 4
+  name: "Bob Larson"
+  fb_id: 444444
+  first_name: "Bob"
+  last_name: "Larson"
