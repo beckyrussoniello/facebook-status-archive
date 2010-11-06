@@ -1,5 +1,4 @@
-<!-- if current_facebook_user --><!-- real version says 'if current_facebook_user' - this change is for the local version only! -->
-<% if session[:user_id] %>
+<% if current_facebook_user %>
   <%= render :partial => 'logged_in_index' %>
 <% else %> 
   <%= render :partial => 'not_logged_in_index' %> 
