@@ -16,7 +16,6 @@ class ApicallsController < ApplicationController
        @since = DateFormatter.find_date("since", params[:apicall])
        @until = DateFormatter.find_date("until", params[:apicall])
     end
-    session[:token] = params[:access_token]
     # Create the apicall with a combination of form data and the
     # the values obtained above. 
     @apicall = Apicall.new(:access_token => session[:token], :user_id => @user.id, :since => @since, 
