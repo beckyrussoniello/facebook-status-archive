@@ -18,45 +18,9 @@ If the user requests their statuses in HTML, the app redirects to the Show page,
 Models
 -------------
 
-### User
-	
- Schema:
-        create_table "users", :force => true do |t|
-          t.integer "fb_id",      :null => false
-          t.string  "username",       :null => false
-          t.string  "first_name"
-          t.string  "last_name"
-          t.string  "image_url"
-          t.string  "oauth_token"
-          t.datetime  "last_login_at"
-          t.datetime "created_at",    :null => false
-          t.datetime "updated_at",    :null => false
-        end
-
-### Archive
-The Archive model class is basically a wrapper for the parameters a user specifies before requesting status data.  This information is used to call the Facebook Graph API, and also to instruct the app on what to do next once the data is received. The model also stores info about _when_ the user made a data request.  This enables the app to later determine where the user "left off" in recording their statuses.
-
- Schema:
-        create_table "archives", :force => true do |t|
-          t.integer  "user_id"
-          t.date     "start_date"
-          t.date     "end_date"
-          t.datetime "created_at",       :null => false
-          t.datetime "updated_at",       :null => false
-          t.integer  "output_format_id"
-        end
-
-### Status
-
- Schema:
-        create_table "statuses", :force => true do |t|
-          t.integer  "user_id"
-          t.integer  "archive_id"
-          t.datetime "timestamp"
-          t.datetime "created_at", :null => false
-          t.datetime "updated_at", :null => false
-          t.string   "message"
-        end
+* `User`
+* `Archive` - a wrapper for the parameters a user specifies when requesting status data.  Also records _when_ the request was made, so we don't duplicate our work next time.
+* `Status`
 
 Controllers
 ------------
@@ -73,4 +37,4 @@ Controllers
 
 FormatRtf Module
 ----------------
-This module takes a set of statuses and uses the [ruby-rtf](http://ruby-rtf.rubyforge.org/) plugin to create an RTF document which displays them.  The resulting document has a header and a separate paragraph for each status (which displays the date, time, and status message).
+This module takes a set of statuses and uses the [rtf](https://github.com/thechrisoshow/rtf/) gem to create an RTF document which displays them.  The resulting document has a header and a separate paragraph for each status (which displays the date, time, and status message).
