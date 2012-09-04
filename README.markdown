@@ -26,9 +26,9 @@ Models
           t.string  "username",       :null => false
           t.string  "first_name"
           t.string  "last_name"
-	  t.string  "image_url"
-	  t.string  "oauth_token"
-	  t.datetime  "last_login_at"
+          t.string  "image_url"
+          t.string  "oauth_token"
+          t.datetime  "last_login_at"
           t.datetime "created_at",    :null => false
           t.datetime "updated_at",    :null => false
         end
@@ -61,19 +61,14 @@ The Archive model class is basically a wrapper for the parameters a user specifi
 Controllers
 ------------
 
-### Users Controller
-* `post_callback` - parses the cookie from Facebook after the user logs in with Facebook Connect.  For first-time users, it creates a new model instance with their Facebook info.  Then, it sets the user's session information.
-* `past_activity` - allows a logged-in user to view their own past activity.
-* `logout` - clears session data and redirects to the logged-out version of the main page.</ul>
+### Application Controller
+* `find_user` - before filter; maintains the session and redirects to OmniAuth as necessary.</ul>
 ### Welcome Controller
+* `login` - receives user info from OmniAuth; creates user if necessary; sets user id in session and updates oauth token.
 * `index` - sets instance variables for the main page.</ul>
-### Apicalls Controller
-* `create` - uses form data to populate an Apicall instance.
-* `rtf` - generates an RTF document with the statuses in an Apicall and sends it to the user.
-* `show` - shows all the statuses in an Apicall.
-* `match_user` - before filter; ensures that a user deals only with their own Apicalls.</ul>
-### Status Controller
-* `create_statuses` - gets status data from Facebook in the form of JSON.  Parses this data, and uses it to populate a Status instance for each status in the JSON response.
+### Archives Controller
+* `create` - uses form data to populate an Archive instance.
+* `show` - displays statuses or initiates RTF download.</ul>
 
 
 FormatRtf Module
