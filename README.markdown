@@ -31,7 +31,7 @@ Controllers
 ### Welcome Controller
 * `login` - receives user info from OmniAuth; creates user if necessary; sets user id in session and updates oauth token.
 * `index` - sets instance variables for the main page.</ul>
-          - 
+          
 ### Archives Controller
 * `create` - uses form data to populate an Archive instance.
 * `show` - displays statuses or initiates RTF download.</ul>
