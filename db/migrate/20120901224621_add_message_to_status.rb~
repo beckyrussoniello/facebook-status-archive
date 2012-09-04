@@ -1,5 +1,0 @@
-class AddMessageToStatus < ActiveRecord::Migration
-  def change
-		add_column :statuses, :messae, :string
-  end
-end
