@@ -1,0 +1,31 @@
+<section class="form">
+
+ <% semantic_form_for(@apicall, :url => create_apicall_url) do |form| %>
+    <% form.inputs do %>
+      <%= form.input :output_format, :label => "Format", :collection => ["HTML", "Rich Text"] %>
+
+<div id="ctrlbutton" class="expand">
+  <%= link_to('+ choose dates', '#', :onclick => toggler, :id => 'toggler') %>
+</div>
+<div id="hiddendiv" style="display:none">
+<% if @user.apicalls.size > 0 %>
+     <%= form.input :left_off, :label => "pick up where I left off", :as => :boolean, :required => false, :input_html => { :disabled => false } %>
+<% end %>
+     <small><small><small class="optional">
+     <%= form.input :since, :label => "Since", :as => :date, :required => false, :start_year => 2009, :end_year => 2010 %>
+      <%= form.input :until, :label => "Until", :as => :date, :required => false, :start_year => 2009, :end_year => 2010 %>
+      </small></small></small> 
+</div>
+     
+   <% end %>
+<% form.buttons do %>
+    <%= form.commit_button :label => "Get my statuses!" %>
+ <% end %>
+<% end %>
+</section>
+
+
+
+
+
+

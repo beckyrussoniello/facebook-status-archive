@@ -1,0 +1,21 @@
+<span class="logout">
+<%= fb_logout_link("Logout", {:controller => "users", :action => "logout"}) %>
+</span>
+
+<h3>
+<img src="https://graph.facebook.com/<%= @user.fb_id %>/picture" size="square"></img> 
+Welcome, <span class="username"><%= @user.first_name %></span> 
+</h3>
+
+<% if @user.apicalls.size >= 1 %>
+  <%= render :partial => "/users/past_activity" %>
+<% else %>
+  <%= render :partial => "info_about_statusarchive" %>
+<% end %>
+
+<%= render :partial => "/apicalls/new" %>
+
+
+
+
+

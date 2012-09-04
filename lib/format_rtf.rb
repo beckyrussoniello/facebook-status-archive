@@ -1,6 +1,4 @@
 module FormatRtf
-#require '/home/becky/Portfolio/status-archive/vendor/plugins/rtf-extensions/rtf/utf8'
-#require '/home/becky/Portfolio/status-archive/vendor/plugins/rtf-extensions/rtf/hyperlink'
 
 # This module takes a set of statuses and uses the ruby-rtf plugin to create an RTF document 
 # which displays them.  The resulting document has a header, a separate "paragraph" for each

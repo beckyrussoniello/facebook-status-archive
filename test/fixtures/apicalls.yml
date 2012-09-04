@@ -1,0 +1,57 @@
+<% ACCESS_TOKEN_1 = "2227470867|2.i_C7meFRwU9nWtCa7wxUSg__.3600.1288720800-6831286|8le1uBfSrEsVF268iMhAo63BBnQ" %>
+<% ACCESS_TOKEN_2 = "2227470867|2.i_C7meFRwU9nWtCa7wxUSg__.3600.1288720800-6831286|8le1uBfSrEsVF268iMhAo63BBnQ" %>
+
+one:
+  id: 1
+  user_id: 1
+  created_at: <%= Time.now - 2.days %>
+  updated_at: <%= Time.now - 2.days %>
+  access_token: <%= ACCESS_TOKEN_1 %>
+  since:
+  until:
+  output_format: "HTML"
+  left_off: false
+
+two:
+  id: 2
+  user_id: 1
+  created_at: <%= Time.now - 5.days %>
+  updated_at: <%= Time.now - 5.days %>
+  access_token: <%= ACCESS_TOKEN_1 %>
+  since: "9 March 2010"
+  until:
+  output_format: "Rich Text"
+  left_off: false
+
+three:
+  id: 3
+  user_id: 2
+  created_at: 2010-10-10 23:23:23 +0000
+  updated_at: 2010-10-10 23:23:23 +0000
+  access_token: <%= ACCESS_TOKEN_2 %>
+  since: " January 2009"
+  until: "26 October 2010"
+  output_format: "Rich Text"
+  left_off: false
+
+four:
+  id: 4
+  user_id: 2
+  created_at: <%= Time.now - 1.day - 15.minutes %>
+  updated_at: <%= Time.now %>
+  access_token: <%= ACCESS_TOKEN_2 %>
+  since:
+  until: " October 2010"
+  output_format: "HTML"
+  left_off: true
+
+five:
+  id: 5
+  user_id: 2
+  created_at: <%= Time.now - 3.day - 10.minutes %>
+  updated_at: <%= Time.now - 2.day - 26.minutes %>
+  access_token: <%= ACCESS_TOKEN_2 %>
+  since: "1 January 2010"
+  until:
+  output_format: "HTML"
+  left_off: false
