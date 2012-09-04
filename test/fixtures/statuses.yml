@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  archive_id: 1
+  timestamp: 2012-08-31 15:08:32
+
+two:
+  user_id: 1
+  archive_id: 1
+  timestamp: 2012-08-31 15:08:32

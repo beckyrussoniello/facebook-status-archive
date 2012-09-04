@@ -1,0 +1,11 @@
+class User < ActiveRecord::Base
+  attr_accessible :fb_id, :first_name, :image_url, :last_login_at,
+									:last_name, :oauth_secret, :oauth_token, :username
+
+	has_many :archives
+	has_many :statuses
+
+	def record_login(new_token)
+		self.update_attributes!(:last_login_at => Time.now, :oauth_token => new_token)
+	end
+end

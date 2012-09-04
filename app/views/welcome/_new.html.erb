@@ -1,0 +1,22 @@
+<div id="new-archive-form">
+<%= form_for @archive, remote: true do |f| %>
+
+<p>
+	<%= f.label :output_format, "format:" %>
+	<%= f.collection_select :output_format_id, @output_formats, :id, :name, { :include_blank => false } %>
+</p>
+
+<p>
+	<%= f.label :start_date, "start date:" %>
+	<%= date_select("archive", "start_date", {start_year: 2011, end_year: Time.now.year, prompt: {:day => 'Choose day ', :month => 'Choose month ', :year => 'Choose year '}}, {}) %>
+</p>
+
+<p>
+	<%= f.label :end_date, "end date:" %>
+	<%= date_select("archive", "end_date", start_year: 2011, end_year: Time.now.year, prompt: {:day => 'Choose day', :month => 'Choose month', :year => 'Choose year'}) %>
+</p>
+
+	<%= f.submit "get my statuses!" %> <%= spinner_tag 'archive_form_spinner' %>
+
+<% end %>
+</div>

@@ -1,0 +1,79 @@
+provider: facebook
+uid: '6831286'
+info: !ruby/hash:OmniAuth::AuthHash::InfoHash
+  nickname: becky.russoniello
+  email: rrussoni@indiana.edu
+  name: Becky Russoniello
+  first_name: Becky
+  last_name: Russoniello
+  image: http://graph.facebook.com/6831286/picture?type=square
+  urls: !ruby/hash:Hashie::Mash
+    Facebook: http://www.facebook.com/becky.russoniello
+  location: Bloomington, Indiana
+  verified: true
+credentials: !ruby/hash:Hashie::Mash
+  token: AAAGgKZBvY5cIBAACjm5OK6hnZA0HWBoKflbD0k3WfTn1T3kZBjbj4sJ8TIZCdF0ZBxiv2Utya4lZAC54tBt0RY753fWAEG0RQZD
+  expires_at: 1350852025
+  expires: true
+extra: !ruby/hash:Hashie::Mash
+  raw_info: !ruby/hash:Hashie::Mash
+    id: '6831286'
+    name: Becky Russoniello
+    first_name: Becky
+    last_name: Russoniello
+    link: http://www.facebook.com/becky.russoniello
+    username: becky.russoniello
+    hometown: !ruby/hash:Hashie::Mash
+      id: '109621475730251'
+      name: Lancaster, Pennsylvania
+    location: !ruby/hash:Hashie::Mash
+      id: '111923415485749'
+      name: Bloomington, Indiana
+    work:
+    - !ruby/hash:Hashie::Mash
+      employer: !ruby/hash:Hashie::Mash
+        id: '115201351823736'
+        name: Freelance
+      position: !ruby/hash:Hashie::Mash
+        id: '108480125843293'
+        name: Web Developer
+      description: You know life is good when "working" and "going on Facebook" are
+        actually the same thing.
+      start_date: 2010-11
+      projects:
+      - !ruby/hash:Hashie::Mash
+        id: '113206838712718'
+        name: Boobs!
+        description: Social game to fight breast cancer.
+        start_date: 2010-12
+        end_date: 2011-03
+      - !ruby/hash:Hashie::Mash
+        id: '117245151676558'
+        name: zingnightlife
+        description: Entertainment directory for southern Florida.
+        start_date: 2010-11
+        end_date: 2010-11
+    - !ruby/hash:Hashie::Mash
+      employer: !ruby/hash:Hashie::Mash
+        id: '109942589029693'
+        name: Green Tree Servicing
+      location: !ruby/hash:Hashie::Mash
+        id: '108308852524610'
+        name: Rapid City, South Dakota
+      start_date: 2011-08
+      end_date: 2012-04
+    education:
+    - !ruby/hash:Hashie::Mash
+      school: !ruby/hash:Hashie::Mash
+        id: '108531479171922'
+        name: Indiana University
+      year: !ruby/hash:Hashie::Mash
+        id: '136328419721520'
+        name: '2009'
+      type: College
+    gender: female
+    email: rrussoni@indiana.edu
+    timezone: -4
+    locale: en_US
+    verified: true
+    updated_time: '2012-08-22T20:33:45+0000'

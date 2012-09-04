@@ -1,0 +1,60 @@
+one:
+  archive: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    output_format_id: '1'
+    start_date(1i): ''
+    start_date(2i): ''
+    start_date(3i): ''
+    end_date(1i): ''
+    end_date(2i): ''
+    end_date(3i): ''
+  commit: get my statuses!
+  action: create
+  controller: archives
+two:
+  archive: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    output_format_id: '1'
+    start_date(1i): '2009'
+    start_date(2i): ''
+    start_date(3i): ''
+    end_date(1i): '2011'
+    end_date(2i): ''
+    end_date(3i): ''
+  commit: get my statuses!
+  action: create
+  controller: archives
+three:
+  archive: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    output_format_id: '1'
+    start_date(1i): '2010'
+    start_date(2i): '9'
+    start_date(3i): '3'
+    end_date(1i): ''
+    end_date(2i): ''
+    end_date(3i): ''
+  commit: get my statuses!
+  action: create
+  controller: archives
+four:
+  archive: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    output_format_id: '1'
+    start_date(1i): '2011'
+    start_date(2i): '11'
+    start_date(3i): '10'
+    end_date(1i): '2012'
+    end_date(2i): '3'
+    end_date(3i): '9'
+  commit: get my statuses!
+  action: create
+  controller: archives
+five:
+  archive: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    output_format_id: '1'
+    start_date(1i): ''
+    start_date(2i): '4'
+    start_date(3i): ''
+    end_date(1i): ''
+    end_date(2i): ''
+    end_date(3i): '9'
+  commit: get my statuses!
+  action: create
+  controller: archives

@@ -1,0 +1,4 @@
+class AddOutputFormatIdToArchive < ActiveRecord::Migration
+  def change
+  end
+end

@@ -1,0 +1,7 @@
+<% if @statuses.empty? %>
+<p>
+Either you have no statuses from that time period, or you didn't give us permission to access your feed!
+</p>
+<% end %>
+
+<%= render partial: 'status', collection: @statuses %>

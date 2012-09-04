@@ -1,0 +1,149 @@
+// Place all the styles related to the welcome controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$sweet: rgb(207,77,214);
+$darker: darken($sweet, 34%);
+$gray: #a9a9a9;
+$dark-gray: darken($gray, 38%);
+$off-white: #f0f8ff;
+
+html {
+	font-family: georgia;
+	padding: 1em;
+}
+
+body {
+background: rgb(89,106,114); /* Old browsers */
+background: -moz-linear-gradient(top, rgba(89,106,114,1) 0%, rgba(206,220,231,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(89,106,114,1)), color-stop(100%,rgba(206,220,231,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, rgba(89,106,114,1) 0%,rgba(206,220,231,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, rgba(89,106,114,1) 0%,rgba(206,220,231,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, rgba(89,106,114,1) 0%,rgba(206,220,231,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom, rgba(89,106,114,1) 0%,rgba(206,220,231,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#596a72', endColorstr='#cedce7',GradientType=0 ); /* IE6-9 */
+
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; 
+
+background-repeat:no-repeat;
+background-attachment:fixed;
+height: 39.5em;
+}
+
+#main {
+	margin-top:1.4em;
+	padding: 0.5em 1.3em 1em;
+	/*text-shadow:1px 1px #a9a9a9;*/
+}
+
+div.box{
+	width: 50em;
+	background-color: $off-white /*lighten($sweet, 30%)*/;
+	margin-left: auto;
+	margin-right: auto;
+	border: 0.18em solid #a9a9a9;
+	color: $dark-gray /*darken($sweet, 32%)*/;
+}
+
+a {
+	text-decoration:none;
+
+	#title{
+		width: 14em;
+		height: 7.2em;
+		background-color: $sweet;
+		border: 0.18em solid #a9a9a9;
+		text-align: center;
+	}
+}
+
+h1 {
+	/*width: 100px;*/
+	color: $off-white;
+	padding: 0.6em 1.6em;
+	margin: 0em;
+	text-shadow:1px 1px 1px #a9a9a9;
+}
+
+select {
+	color: $dark-gray;
+	margin: 0.15em 0.3em;
+/*	background-color: lighten(#a9a9a9, 20%); 
+	padding: 2px 4px;*/
+}
+
+#archive_end_date_1i {
+	margin-left: 1.3em;
+}
+
+input, select {
+	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+/*	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, lighten(#a9a9a9, 24%)), color-stop(1, lighten(#a9a9a9, 9%)) );
+	background:-moz-linear-gradient( center top, lighten(#a9a9a9, 24%) 5%, lighten(#a9a9a9, 9%) 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#edcced', endColorstr='#b8a0b8');
+ */
+}
+
+input {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #edcced), color-stop(1, #b8a0b8) );
+	background:-moz-linear-gradient( center top, #edcced 5%, #b8a0b8 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#edcced', endColorstr='#b8a0b8');
+	background-color: $sweet /*#edcced -- the 2nd color stop was #b8a0b8 */;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px; 
+	border:1px solid #a9a9a9;
+
+	display:inline-block;
+	color: $dark-gray/*#593759 */;
+	/*font-family:arial;*/
+	font-size:16px;
+	font-weight:bold;
+	font-variant:small-caps;
+	padding: 5px 20px/*6px 24px*/;
+	text-decoration:none;
+	/*text-shadow:1px 1px 0px #ffffff;*/
+}
+
+input:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #b8a0b8), color-stop(1, #edcced) );
+	background:-moz-linear-gradient( center top, #b8a0b8 5%, #edcced 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#b8a0b8', endColorstr='#edcced');
+	background-color:#b8a0b8;
+}
+
+input:active {
+	position:relative;
+	top:1px;
+}
+
+input, label {
+	font-variant: small-caps;
+}
+
+div#info {
+	width:51em;
+	font-variant:normal;
+	text-shadow:none;
+	margin-top:3em;
+	padding: 0.8em;
+}
+
+#info p {
+	font-size:90%;
+	text-align:center;
+}
+
+.invisible {
+	display:none;
+}
+
+#archive_form_spinner {
+	margin-left:2em;
+	margin-bottom:-0.8em;
+}

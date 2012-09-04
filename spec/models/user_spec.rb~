@@ -1,0 +1,19 @@
+require 'spec_helper'
+
+describe User do
+
+	before :each do
+		@user = FactoryGirl.create(:user)
+	end
+
+	describe '#record_login' do
+		it 'updates the oauth token' do
+			old_token = @user.oauth_token
+			@user.record_login('some_token')
+			@user.oauth_token.should_not == old_token
+			@user.oauth_token.should == 'some_token'
+		end
+	end
+
+
+end
