@@ -47,7 +47,7 @@ class Archive < ActiveRecord::Base
 		end
 		statuses.each do |status|
 			unless status['message'].nil? or user.statuses.find_by_message(status['message'])
-				Status.create!(message: status['message'], user_id: user.id, archive_id: self.id, 
+				Status.create!(message: status['message'][0,255], user_id: user.id, archive_id: self.id, 
 										timestamp: status['updated_time'] )
 			end
 		end
