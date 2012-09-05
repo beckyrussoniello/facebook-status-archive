@@ -38,7 +38,6 @@ class Archive < ActiveRecord::Base
 	end
 
 	def create_statuses!
-	#	user = User.find(self.user_id)
 		graph = Koala::Facebook::API.new(self.user.oauth_token)
 		collection = graph.get_connections('me', 'statuses')
 		statuses = collection
@@ -46,23 +45,11 @@ class Archive < ActiveRecord::Base
 			statuses += collection
 		end
 		statuses.each do |status|
-			unless status['message'].nil? or user.statuses.find_by_message(status['message'])
+			unless status['message'].nil? or user.statuses.find_by_message(status['message'][0,255])
 				Status.create!(message: status['message'][0,255], user_id: user.id, archive_id: self.id, 
 										timestamp: status['updated_time'] )
 			end
 		end
 		user.update_attributes!(last_login_at: Time.now)
 	end
-
-=begin
-		while Status.last.timestamp > user.last_login_at and statuses['paging']['next']
-			statuses.each do |status|
-			unless status['message'].nil? or user.statuses.find_by_message(status['message'])
-					Status.create!(message: status['message'], user_id: user.id, archive_id: self.id, 
-										timestamp: status['updated_time'] )
-				end
-			end
-		end
-=end
-
 end
