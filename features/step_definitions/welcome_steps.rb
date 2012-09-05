@@ -1,8 +1,13 @@
+Given /^the following output formats exist:/ do |table|
+	table.hashes.each do |output_format|
+		OutputFormat.create(output_format)
+  end
+end
+
 Given /^I am a registered user$/ do
-		@test_users = Koala::Facebook::TestUsers.new(:app_id => Facebook::APP_ID, :secret => Facebook::SECRET)
-		@oauth_token = @test_users.create(true)["access_token"]
+
 		User.create!(:username => "Becky Russoniello", :first_name => "Becky", 
-								:last_name => "Russoniello", :fb_id => 6831286, 
+								:last_name => "Russoniello", :fb_id => "6831286", 
 								:image_url => "http://graph.facebook.com/6831286/picture?type=square", 
 								:oauth_token => @oauth_token)
 end

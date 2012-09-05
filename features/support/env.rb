@@ -8,13 +8,14 @@ SimpleCov.start 'rails'
 # files.
 
 require 'cucumber/rails'
+require 'cucumber/rspec/doubles'
 
 # Capybara defaults to XPath selectors rather than Webrat's default of CSS3. In
 # order to ease the transition to Capybara we set the default here. If you'd
 # prefer to use XPath just remove this line and adjust any selectors in your
 # steps to use the XPath syntax.
 Capybara.default_selector = :css
-
+Capybara.ignore_hidden_elements = false
 # By default, any exception happening in your Rails application will bubble up
 # to Cucumber so that your scenario will fail. This is a different from how 
 # your application behaves in the production environment, where an error page will 
@@ -31,6 +32,10 @@ Capybara.default_selector = :css
 # recommended as it will mask a lot of errors for you!
 #
 ActionController::Base.allow_rescue = false
+
+
+OmniAuth.config.test_mode = true
+
 
 # Remove/comment out the lines below if your app doesn't have a database.
 # For some databases (like MongoDB and CouchDB) you may need to use :truncation instead.
@@ -60,3 +65,12 @@ end
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
 
+@sample_api_response = [{"id"=>"10101477795872089", "from"=>{"name"=>"Becky Russoniello", "id"=>"6831286"}, "message"=>"Thanks so much to everyone who wished me happy birthday!", "updated_time"=>"2012-02-25T02:18:00+0000"}, {"id"=>"10101449720195969", "from"=>{"name"=>"Becky Russoniello", "id"=>"6831286"}, "message"=>"\"I watched that bacon gnome go into my mouth...and then my stomach\" -Chris while asleep", "updated_time"=>"2012-02-17T04:35:39+0000"}]
+
+Before do
+	@test_users = Koala::Facebook::TestUsers.new(:app_id => Facebook::APP_ID, :secret => Facebook::SECRET)
+	@oauth_token = @test_users.create(true)["access_token"]
+	Koala::Facebook::API.any_instance.stub(:get_connections).and_return(@sample_api_response)
+	Koala::Facebook::API::GraphCollection.any_instance.stub(:next_page).and_return([@sample_api_response, nil].sample)
+	OmniAuth.config.add_mock(:facebook, {:uid => '6831286', :credentials => {:token => @oauth_token}})
+end

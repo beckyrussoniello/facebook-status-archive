@@ -1,49 +1,49 @@
-When /^I click on 'get my statuses'$/ do
-	page.click_button 'get my statuses'
+When /^I click on 'get my statuses!'$/ do
+	#print page.html
+	page.click_button 'get my statuses!'
 end
 
 Then /^I should see a list of my statuses$/ do
-	page.should have_xpath "//div[@id=\"statuses\"]"
+	sleep(12)
+	print page.html
+	page.should have_xpath "//span[@class=\"status\"]"
 end
 
-When /^I click on 'past year'$/ do
-	page.click_link 'past year'
+When /^I select a start date of (one|two) year(s)? ago today$/ do |num, plural|
+	start_date = case num
+		when 'one' then 1.year.ago
+		else 2.years.ago
+	end
+	page.select start_date.strftime("%Y"), from: 'archive_start_date_1i'
+	page.select start_date.strftime("%B"), from: 'archive_start_date_2i'
+	page.select start_date.strftime("%-d"), from: 'archive_start_date_3i'
 end
 
-Then /^every status shown should be from the last year$/ do
-	page.all("div.status").each do |s|
-		status = Status.find_by_fb_id() # FIX THIS!!
+Then /^every status shown should be from the last (two )?year(s)?$/ do |two, plural|
+	num = case two
+		when 'two ' then 2
+		else 1
+	end
+	page.all("span.timestamp").each do |s|
+		s.text.to_datetime.should >= num.years.ago
 	end
 end
 
-When /^I click on 'past two years'$/ do
-	page.click_link 'past two years'
-end
-
-Then /^every status shown should be from the last two years$/ do
-  pending # express the regexp above with the code you wish you had
-end
-
-When /^I click on 'more'$/ do
-	page.click_link 'more'
-end
-
-When /^I select a start date of (\w+) (\d+), (\d+)$/ do |month, day, year|
-	page.select month, from: 'Month'
-	page.select day, from: 'Day'
-	page.select year, from: 'Year'
-end
-
-When /^I select an end date of (\w+) (\d+), (\d+)$/ do |month, day, year|
-  pending # express the regexp above with the code you wish you had
+When /^I select a(n)? (end|start) date of (\w+) (\d+), (\d+)$/ do |n, which, month, day, year|
+	page.select month, from: "archive_#{which}_date_2i"
+	page.select day, from: "archive_#{which}_date_3i"
+	page.select year, from: "archive_#{which}_date_1i"
 end
 
 Then /^every status shown should be from between (\w+) (\d+), (\d+) and (\w+) (\d+), (\d+)$/ do |m1, d1, y1, m2, d2, y2|
-  pending # express the regexp above with the code you wish you had
+	page.all("span.timestamp").each do |s|
+		s.text.to_datetime.should >= Date.new(y1, m1, d1)
+		s.text.to_datetime.should <= Date.new(y2, m2, d2)
+	end
 end
 
-When /^I select 'Rich Text' from the format options$/ do
-  pending # express the regexp above with the code you wish you had
+When /^I select 'RTF' from the format options$/ do
+	page.select 'RTF', from: 'archive_output_format_id'
 end
 
 Then /^an RTF of my statuses should download onto my computer$/ do

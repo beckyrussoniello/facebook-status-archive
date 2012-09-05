@@ -1,6 +1,6 @@
 class ArchivesController < ApplicationController
   def create
-		format = params[:archive][:output_format_id]
+		format = params[:archive][:output_format_id] || 1
 		start_date, end_date = Archive.get_dates(params)
 		@archive = Archive.create!(user_id: session[:user_id], start_date: start_date, 
 															end_date: end_date, output_format_id: format)
