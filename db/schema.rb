@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120901224621) do
+ActiveRecord::Schema.define(:version => 20120905052227) do
 
   create_table "archives", :force => true do |t|
     t.integer  "user_id"
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(:version => 20120901224621) do
     t.datetime "timestamp"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.string   "message"
+    t.text     "message"
   end
 
   create_table "users", :force => true do |t|

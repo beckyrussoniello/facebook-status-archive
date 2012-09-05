@@ -1,6 +1,6 @@
 class ArchivesController < ApplicationController
   def create
-		format = params[:archive][:output_format_id] || 1
+		format = params[:archive][:output_format_id] #|| 1
 		start_date, end_date = Archive.get_dates(params)
 		@archive = Archive.create!(user_id: session[:user_id], start_date: start_date, 
 															end_date: end_date, output_format_id: format)
@@ -11,6 +11,7 @@ class ArchivesController < ApplicationController
   def show
 		@archive = Archive.find(params[:id])
 		@statuses = @user.statuses.where("timestamp > ? AND timestamp < ?", @archive.start_date, @archive.end_date)
+									.order('timestamp DESC')
 		if @archive.output_format_id == 2
   		File.open("status_archive_for_#{@user.username}.rtf", "w") do |file|
 				file.write(FormatRtf.format(@user, @statuses).to_rtf)
